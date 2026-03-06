@@ -7,7 +7,7 @@ import { useThemeIconColor } from "@/hooks/useThemeColor";
 export default function SourceViewButton() {
   const { iconPrimaryColor } = useThemeIconColor();
   const openSourcePublicPage = () => {
-    Linking.openURL("https://github.com/sanflat/delicieux");
+    Linking.openURL("https://github.com/hey9woz/delicieux");
   };
 
   return (
