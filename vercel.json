@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run export",
+  "outputDirectory": "web-build",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "delicieux",
+    "slug": "delicieux",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.hey9woz.delicieux",
+      "scheme": "delicieux"
+    },
+    "android": {
+      "package": "com.hey9woz.delicieux",
+      "scheme": "delicieux"
+    },
+    "icon": "./assets/icon.png",
+    "extra": {
+      "eas": {
+        "projectId": "hoge"
+      }
+    },
+    "plugins": [
+      "expo-build-properties"
+    ]
+  }
+}
