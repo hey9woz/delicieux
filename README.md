@@ -14,7 +14,7 @@ A simple recipe management app built with Expo / React Native.
 
 ## Demo
 
-- Web (quick preview): deploy on Vercel (some UI is optimized for mobile)
+- Web (quick preview): https://delicieux-alpha.vercel.app/ (some UI is optimized for mobile)
 - Mobile (recommended): open the project in Expo Go via QR code from `npx expo start`
 
 1. Install dependencies
