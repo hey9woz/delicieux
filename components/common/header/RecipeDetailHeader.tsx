@@ -13,6 +13,7 @@ import {
 import HeaderArea from "@/components/layout/HeaderArea";
 import LogoButton from "../button/LogoButton";
 import RippleButton from "@/components/common/button/RippleButton";
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 interface RecipeDetailHeaderProps {
   recipeId: string;
@@ -69,16 +70,16 @@ const RecipeDetailHeader: React.FC<RecipeDetailHeaderProps> = ({
 	          />
 	        )}
 	      >
-	        <Menu.Item onPress={handleEdit}>
-	          <HStack space={2} alignItems="center">
-	            <Icon as={MaterialIcons} name="edit" size="sm" color={iconPrimaryColor} />
-            <Text>Edit</Text>
+        <Menu.Item onPress={handleEdit}>
+          <HStack space={2} alignItems="center">
+            <Icon as={MaterialIcons} name="edit" size="sm" color={iconPrimaryColor} />
+            <Text>{recipeCopy.recipeDetailHeader.menu.edit}</Text>
           </HStack>
         </Menu.Item>
         <Menu.Item onPress={handleDelete}>
           <HStack space={2} alignItems="center">
             <Icon as={MaterialIcons} name="delete" size="sm" color={iconPrimaryColor} />
-            <Text>Delete</Text>
+            <Text>{recipeCopy.recipeDetailHeader.menu.delete}</Text>
           </HStack>
         </Menu.Item>
       </Menu>

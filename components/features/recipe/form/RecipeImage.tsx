@@ -9,6 +9,7 @@ import {
   FormControl,
 } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 type Props = {
   image: string | null;
@@ -58,7 +59,7 @@ export default function RecipeImage({
               borderRadius="lg"
             >
               <Text fontSize="md" color={colorPlaceholder} bold>
-                完成イメージ
+                {recipeCopy.form.mainPhotoPlaceholder}
               </Text>
               <Icon
                 color={colorPlaceholder}

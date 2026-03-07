@@ -4,6 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { Ingredient } from "@/types/interface";
 import { Keyboard, TextInput } from 'react-native';
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 interface IngredientInputProps {
   color: string;
@@ -33,7 +34,7 @@ const IngredientInput: React.FC<IngredientInputProps> = ({
       borderWidth={0}
       height={inputHeight}
       flex={1}
-      placeholder="材料"
+      placeholder={recipeCopy.form.ingredientPlaceholder}
       value={ingredient.text}
       onChangeText={(text: string) => onChange(text, ingredient.id)}
       fontSize="md"
@@ -47,7 +48,7 @@ const IngredientInput: React.FC<IngredientInputProps> = ({
       borderColor="transparent"
       borderWidth={0}
       height={inputHeight}
-      placeholder="数量"
+      placeholder={recipeCopy.form.quantityPlaceholder}
       value={ingredient.quantity}
       onChangeText={(text: string) => onQuantityChange(text, ingredient.id)}
       fontSize="md"
@@ -115,11 +116,11 @@ const StepInput: React.FC<StepInputProps> = ({
           style={{
             flex: 1,
             color,
-            fontSize: 16,
-            fontWeight: "700",
-            paddingVertical: 10,
-          }}
-          placeholder={`手順 ${index + 1}`}
+          fontSize: 16,
+          fontWeight: "700",
+          paddingVertical: 10,
+        }}
+          placeholder={recipeCopy.form.stepPlaceholder(index)}
           placeholderTextColor={colorPlaceholder}
           value={step.text}
           onChangeText={(text) => onChange(text, step.id)}
@@ -143,16 +144,16 @@ const StepInput: React.FC<StepInputProps> = ({
         <Actionsheet.Content>
           {step.image ? (
             <>
-              <Actionsheet.Item onPress={() => pickImage('library')}>変更</Actionsheet.Item>
-              <Actionsheet.Item onPress={() => onPickImage(null)}>削除</Actionsheet.Item>
+              <Actionsheet.Item onPress={() => pickImage('library')}>{recipeCopy.imagePicker.actionsheet.change}</Actionsheet.Item>
+              <Actionsheet.Item onPress={() => onPickImage(null)}>{recipeCopy.imagePicker.actionsheet.remove}</Actionsheet.Item>
             </>
           ) : (
             <>
-              <Actionsheet.Item onPress={() => pickImage('library')}>写真を選択</Actionsheet.Item>
-              <Actionsheet.Item onPress={() => pickImage('camera')}>写真を撮る</Actionsheet.Item>
+              <Actionsheet.Item onPress={() => pickImage('library')}>{recipeCopy.imagePicker.actionsheet.chooseFromLibrary}</Actionsheet.Item>
+              <Actionsheet.Item onPress={() => pickImage('camera')}>{recipeCopy.imagePicker.actionsheet.takePhoto}</Actionsheet.Item>
             </>
           )}
-          <Actionsheet.Item onPress={onClose}>キャンセル</Actionsheet.Item>
+          <Actionsheet.Item onPress={onClose}>{recipeCopy.imagePicker.actionsheet.cancel}</Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
     </Box>

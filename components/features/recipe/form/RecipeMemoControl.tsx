@@ -1,6 +1,7 @@
 import { Box, FormControl } from 'native-base';
 import React from "react";
 import { TextInput } from "react-native";
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 interface RecipeMemoControlProps {
   memo: string;
@@ -27,7 +28,7 @@ const RecipeMemoControl: React.FC<RecipeMemoControlProps> = ({
           fontWeight: "700",
           paddingVertical: 10,
         }}
-        placeholder="メモ"
+        placeholder={recipeCopy.form.notesPlaceholder}
         placeholderTextColor={colorPlaceholder}
         value={memo}
         onChangeText={onChange}

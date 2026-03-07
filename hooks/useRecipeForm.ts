@@ -5,6 +5,7 @@ import useAuth from "@/hooks/useAuth";
 import { saveRecipeWithImage, updateRecipeWithImage } from "@/services/saveRecipeWithImage";
 import { Keyboard } from 'react-native';
 import { useStackNavigation } from "@/hooks/useStackNavigation";
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 type Props = {
   recipe?: Recipe;
@@ -101,7 +102,7 @@ export function useRecipeForm(recipe: Props) {
     }
 
     if (source === 'camera' && !permissionsGranted.camera || source === 'library' && !permissionsGranted.gallery) {
-      alert('カメラまたはフォト ギャラリーにアクセスする許可が必要です。');
+      alert(recipeCopy.imagePicker.permissionRequired);
       return;
     }
 
