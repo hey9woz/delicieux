@@ -11,6 +11,7 @@ import RecipeIngredientsControl from "@/components/features/recipe/form/RecipeIn
 import RecipeStepsControl from "@/components/features/recipe/form/RecipeStepsControl";
 import RecipeMemoControl from "@/components/features/recipe/form/RecipeMemoControl";
 import RecipeSaveButton from "@/components/features/recipe/form/RecipeSaveButton";
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 type Props = {
   recipe?: Recipe;
@@ -52,7 +53,7 @@ export default function RecipeForm({ recipe, isCreate }: Props) {
         <RecipeName
           value={recipeName}
           onChange={setRecipeName}
-          placeholder="レシピ名を入力"
+          placeholder={recipeCopy.form.namePlaceholder}
           color={textPrimaryColor}
           colorPlaceholder={placeholderColor}
           inputHeight="60"

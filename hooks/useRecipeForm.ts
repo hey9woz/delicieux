@@ -5,6 +5,9 @@ import useAuth from "@/hooks/useAuth";
 import { saveRecipeWithImage, updateRecipeWithImage } from "@/services/saveRecipeWithImage";
 import { Keyboard } from 'react-native';
 import { useStackNavigation } from "@/hooks/useStackNavigation";
+import { recipeCopy } from "@/components/features/recipe/copy";
+import { pickImageUri } from "@/utils/imagePicker";
+import { logger } from "@/utils/logger";
 
 type Props = {
   recipe?: Recipe;
@@ -52,7 +55,7 @@ export function useRecipeForm(recipe: Props) {
 
   const handleSaveRecipe = useCallback(async () => {
     if (!user) {
-      console.log("ユーザーが認証されていません");
+      logger.info("ユーザーが認証されていません");
       return;
     }
 
@@ -81,7 +84,7 @@ export function useRecipeForm(recipe: Props) {
       }
       navigation.goBack();
     } catch (error) {
-      console.error("レシピの保存に失敗しました:", error);
+      logger.error("レシピの保存に失敗しました:", error);
     }
   }, [
     user,
@@ -101,32 +104,13 @@ export function useRecipeForm(recipe: Props) {
     }
 
     if (source === 'camera' && !permissionsGranted.camera || source === 'library' && !permissionsGranted.gallery) {
-      alert('カメラまたはフォト ギャラリーにアクセスする許可が必要です。');
+      alert(recipeCopy.imagePicker.permissionRequired);
       return;
     }
 
     setIsImageLoading(true);
-
-    let result: ImagePicker.ImagePickerResult;
-    if (source === "camera") {
-      result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-    } else {
-      result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-    }
-
-    if (!result.canceled) {
-      const imageUri = (result as ImagePicker.ImagePickerSuccessResult)
-        .assets[0].uri;
+    const imageUri = await pickImageUri(source);
+    if (imageUri) {
       setMainImage(imageUri);
     }
     setIsImageLoading(false);

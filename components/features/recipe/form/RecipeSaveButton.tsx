@@ -1,4 +1,5 @@
 import { Box, Button, Text } from 'native-base';
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 interface RecipeSaveButtonProps {
   onPress: () => void;
@@ -18,7 +19,7 @@ const RecipeSaveButton: React.FC<RecipeSaveButtonProps> = ({
   <Box width="85%" mt={3}>
     <Button bgColor={bgColor} onPress={onPress} borderRadius="10px" h="50px" borderWidth={1} borderColor={borderColor}>
       <Text color={color} fontWeight="bold">
-        { isCreate ? 'レシピ登録' : 'レシピ編集'}
+        { isCreate ? recipeCopy.form.saveButton.create : recipeCopy.form.saveButton.saveChanges}
       </Text>
     </Button>
   </Box>
