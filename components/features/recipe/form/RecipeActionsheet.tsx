@@ -1,4 +1,5 @@
 import { Actionsheet } from "native-base";
+import { recipeCopy } from "@/components/features/recipe/copy";
 
 type Props = {
   isOpen: boolean;
@@ -19,23 +20,23 @@ export default function RecipeActionsheet({
         {image ? (
           <>
             <Actionsheet.Item onPress={() => onPickImage("library")}>
-              変更
+              {recipeCopy.imagePicker.actionsheet.change}
             </Actionsheet.Item>
             <Actionsheet.Item onPress={() => onPickImage(null)}>
-              削除
+              {recipeCopy.imagePicker.actionsheet.remove}
             </Actionsheet.Item>
           </>
-        ) : (
+          ) : (
           <>
             <Actionsheet.Item onPress={() => onPickImage("library")}>
-              ギャラリーから選択
+              {recipeCopy.imagePicker.actionsheet.chooseFromLibrary}
             </Actionsheet.Item>
             <Actionsheet.Item onPress={() => onPickImage("camera")}>
-              写真を撮る
+              {recipeCopy.imagePicker.actionsheet.takePhoto}
             </Actionsheet.Item>
           </>
         )}
-        <Actionsheet.Item onPress={onClose}>キャンセル</Actionsheet.Item>
+        <Actionsheet.Item onPress={onClose}>{recipeCopy.imagePicker.actionsheet.cancel}</Actionsheet.Item>
       </Actionsheet.Content>
     </Actionsheet>
   );

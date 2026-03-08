@@ -3,6 +3,7 @@ import { Button, VStack, Spinner, Text, Center } from 'native-base';
 import { fetchUsers } from '@/services/userService';
 import { User } from '@/types/interface';
 import useAuth from "@/hooks/useAuth";
+import { logger } from "@/utils/logger";
 
 type Props = {
   handleShareUserId: (userId: string) => void;
@@ -18,7 +19,7 @@ const UserSelector = ({ handleShareUserId }: Props) => {
         const usersData = await fetchUsers();
         setUsers(usersData.filter(u => u.id !== user?.id));
       } catch (error) {
-        console.error("Failed to fetch users:", error);
+        logger.error("Failed to fetch users:", error);
       }
     };
     fetchAndSetUsers();

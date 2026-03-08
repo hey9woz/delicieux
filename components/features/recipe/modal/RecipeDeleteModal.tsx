@@ -11,6 +11,8 @@ import { deleteRecipe } from "@/services/recipeService";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useThemeTextColor } from "@/hooks/useThemeColor";
 import { useStackNavigation } from "@/hooks/useStackNavigation";
+import { recipeCopy } from "@/components/features/recipe/copy";
+import { logger } from "@/utils/logger";
 
 type Props = {
   deleteId: string;
@@ -35,15 +37,15 @@ export function RecipeDeleteModal({
       setDeleteModal(false); // モーダルを閉じる
       await deleteRecipe(deleteId); // レシピの削除を試みる
       toast.show({
-        description: "Deleted.",
+        description: recipeCopy.recipeDelete.toast.success,
         colorScheme: "success", // 成功のステータス
         duration: 3000, // 表示時間
       });
       navigation.navigate("RecipeList");
     } catch (error) {
-      console.error("Failed to delete recipe:", error);
+      logger.error("Failed to delete recipe:", error);
       toast.show({
-        description: "Failed to delete.",
+        description: recipeCopy.recipeDelete.toast.failure,
         colorScheme: "error", // エラーのステータス
         duration: 3000, // 表示時間
       });
@@ -58,14 +60,14 @@ export function RecipeDeleteModal({
           <HStack space={2} alignItems="center">
             <Icon as={MaterialIcons} name="delete" color={textPrimaryColor} />
             <Text textAlign="center" color={textPrimaryColor}>
-              Delete
+              {recipeCopy.recipeDelete.headerTitle}
             </Text>
           </HStack>
         </Modal.Header>
         <Modal.Body>
           <VStack space={4} alignItems="center" justifyContent="center">
             <Text fontSize="md" color={textPrimaryColor} textAlign="center">
-              Are you sure you want to delete this recipe?
+              {recipeCopy.recipeDelete.confirmMessage}
             </Text>
           </VStack>
         </Modal.Body>
@@ -78,9 +80,9 @@ export function RecipeDeleteModal({
                 setDeleteModal(false);
               }}
             >
-              Cancel
+              {recipeCopy.recipeDelete.buttons.cancel}
             </Button>
-            <Button onPress={handleDelete}>Delete</Button>
+            <Button onPress={handleDelete}>{recipeCopy.recipeDelete.buttons.delete}</Button>
           </Button.Group>
         </Modal.Footer>
       </Modal.Content>

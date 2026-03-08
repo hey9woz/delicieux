@@ -2,6 +2,7 @@ import { updateRecipe, updateRecipeMainImage, updateRecipeSteps } from './firest
 import { uploadImage, uploadStepImages } from './storageService';
 import { Ingredient, Step } from '@/types/interface';
 import { saveRecipe } from "@/services/recipeService";
+import { logger } from "@/utils/logger";
 
 /**
  * 新規レシピの保存と、外部のStorageに画像のアップロードを行うスタブ
@@ -37,7 +38,7 @@ export async function saveRecipeWithImage(
 
     return recipeId;
   } catch (error) {
-    console.error('画像付きレシピの保存エラー', error);
+    logger.error('画像付きレシピの保存エラー', error);
     throw error;
   }
 }
@@ -62,7 +63,7 @@ export async function updateRecipeWithImage(
   image: string | null
 ): Promise<void> {
   try {
-    console.log("recipeId1" + recipeId);
+    logger.info("recipeId1" + recipeId);
 
     // まずレシピを更新
     await updateRecipe(recipeId, userId, name, ingredients, steps, memo);
@@ -79,7 +80,7 @@ export async function updateRecipeWithImage(
     const updatedSteps = await uploadStepImages(steps, recipeId);
     await updateRecipeSteps(recipeId, updatedSteps);
   } catch (error) {
-    console.error('画像を含むレシピの更新中にエラーが発生しました:', error);
+    logger.error('画像を含むレシピの更新中にエラーが発生しました:', error);
     throw error;
   }
 }

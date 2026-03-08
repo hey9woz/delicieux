@@ -16,6 +16,7 @@ import {
 } from "@/services/todoService";
 import { ToDo } from "@/types/interface";
 import { useThemeTextColor } from "@/hooks/useThemeColor";
+import { logger } from "@/utils/logger";
 
 interface TodoItemProps {
   data: ToDo;
@@ -43,7 +44,7 @@ const TodoItem = memo(
         }
         onFinishEditing();
       } catch (error) {
-        console.error("Failed to update task:", error);
+        logger.error("Failed to update task:", error);
       }
     };
 
@@ -54,7 +55,7 @@ const TodoItem = memo(
         await updateTodoDone(nextDone, data.id);
       } catch (error) {
         setDone(!nextDone);
-        console.error("Failed to update task:", error);
+        logger.error("Failed to update task:", error);
       }
     };
 
@@ -63,7 +64,7 @@ const TodoItem = memo(
         await deleteTodo(id);
         onRemove(id);
       } catch (error) {
-        console.error("Failed to update task:", error);
+        logger.error("Failed to update task:", error);
       }
     };
 

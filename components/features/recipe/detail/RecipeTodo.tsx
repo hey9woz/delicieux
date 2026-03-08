@@ -15,6 +15,7 @@ import {
 } from "@expo/vector-icons";
 import useAuth from "@/hooks/useAuth";
 import Ripple from "react-native-material-ripple";
+import { logger } from "@/utils/logger";
 
 type Props = {
   iconColor: string;
@@ -64,7 +65,7 @@ const RecipeTodo = ({
 	        duration: 3000,
 	      });
 	    } catch (error) {
-	      console.error("Failed to save todo:", error);
+	      logger.error("Failed to save todo:", error);
 	      toast.show({
 	        description: "Failed to save todo.",
 	        colorScheme: "error",
