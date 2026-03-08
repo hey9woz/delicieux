@@ -12,6 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useThemeTextColor } from "@/hooks/useThemeColor";
 import { useStackNavigation } from "@/hooks/useStackNavigation";
 import { recipeCopy } from "@/components/features/recipe/copy";
+import { logger } from "@/utils/logger";
 
 type Props = {
   deleteId: string;
@@ -42,7 +43,7 @@ export function RecipeDeleteModal({
       });
       navigation.navigate("RecipeList");
     } catch (error) {
-      console.error("Failed to delete recipe:", error);
+      logger.error("Failed to delete recipe:", error);
       toast.show({
         description: recipeCopy.recipeDelete.toast.failure,
         colorScheme: "error", // エラーのステータス

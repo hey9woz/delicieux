@@ -14,6 +14,7 @@ import TodoList from "@/components/features/todo/list/TodoList";
 import { ToDo } from "@/types/interface";
 import useAuth from "@/hooks/useAuth";
 import { useThemeDisplayColor } from "@/hooks/useThemeColor";
+import { logger } from "@/utils/logger";
 
 export default function TodoListScreen() {
   const [data, setData] = useState<ToDo[]>([]);
@@ -64,7 +65,7 @@ export default function TodoListScreen() {
         setShouldScrollToEnd(true);
       }
     } catch (error) {
-      console.error("Failed to add todo:", error);
+      logger.error("Failed to add todo:", error);
     }
   }, [user?.id, userIds]);
 

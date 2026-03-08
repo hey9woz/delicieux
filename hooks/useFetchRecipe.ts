@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Recipe } from "@/types/interface";
 import { fetchRecipeByRecipeId } from "@/services/recipeService";
 import { fetchUserByUserId } from "@/services/userService";
+import { logger } from "@/utils/logger";
 
 const useFetchRecipe = (recipeId: string) => {
   const [recipe, setRecipe] = useState<Recipe | null>(null);
@@ -24,7 +25,7 @@ const useFetchRecipe = (recipeId: string) => {
             if (userData) {
               setUserName(userData.userName);
             } else {
-              console.log("ユーザーが見つかりませんでした。");
+              logger.info("ユーザーが見つかりませんでした。");
             }
           }
         } else {

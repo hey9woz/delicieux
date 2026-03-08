@@ -7,6 +7,7 @@ import SearchInput from "@/components/common/input/Search";
 import CustomCheckbox from "./list/CustomCheckbox";
 import { Box, Text, HStack, VStack } from "native-base";
 import { FlatList } from "react-native";
+import { logger } from "@/utils/logger";
 
 interface SelectedUsersProps {
   handleShareUserId: (userId: string) => void;
@@ -41,7 +42,7 @@ export default function SelectedUsers({
             setFilteredUsers(usersWithStatus);
           }
         } catch (error) {
-          console.error("Failed to fetch users:", error);
+          logger.error("Failed to fetch users:", error);
         }
       };
       fetchAndSetUsers();
